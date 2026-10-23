@@ -1,0 +1,40 @@
+---
+const { titulo } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{titulo}</title>
+    <script is:inline>document.documentElement.classList.add('js');</script>
+    <link rel="icon" href={`${base}/logo.png`} />
+    <style is:global>
+      :root {
+        --azul: #004e7f;
+        --celeste: #52a7fa;
+        --verde: #70bf40;
+        --amarillo: #fdbe11;
+        --fondo: #f7f7f7;
+        --texto: #1f2933;
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+        line-height: 1.65;
+        color: var(--texto);
+        background: var(--fondo);
+      }
+      a { color: var(--azul); }
+      a:focus-visible { outline: 3px solid var(--celeste); outline-offset: 2px; }
+      .wrap { max-width: 44rem; margin: 0 auto; padding: 0 1.25rem; }
+      @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    </style>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
